@@ -1,0 +1,25 @@
+{
+  "name": "team-info-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gregmarz/team-info-generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gregmarz/team-info-generator/issues"
+  },
+  "homepage": "https://github.com/gregmarz/team-info-generator#readme",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "inquirer": "^9.0.1",
+    "jest": "^28.1.3"
+  }
+}
