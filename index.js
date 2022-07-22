@@ -184,7 +184,7 @@ function genInt() {
 
 function writeFile(info) {
   console.log(info);
-  console.log(`THIS IS THE DATA GIVEN TO WRITEFILE ${info.data}`);
+  console.log(`THIS IS THE DATA GIVEN TO WRITEFILE ${info[0].name}`);
   // const htmlFile = HTMLGen(data);
   // fs.writeFile(fileName, htmlFile, function (err) {
   //   if (err) {
