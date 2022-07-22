@@ -1,6 +1,8 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+const empList = ["Employee", "Engineer", "Intern"];
+
 const questions = [
   {
     name: "manName",
@@ -17,6 +19,20 @@ const questions = [
   {
     name: "manOffNum",
     message: "What is the manager's office number",
+  },
+  {
+    type: "confirm",
+    name: "choiceConfirm",
+    message: "Would you like to add a new employee",
+    default: false,
+  },
+];
+
+const empListChoice = [
+  {
+    type: "list",
+    name: "choice",
+    choices: empList,
   },
 ];
 
@@ -76,6 +92,14 @@ const intQuestion = [
 function init() {
   inquirer.prompt(questions).then(function (data) {
     console.log(data);
+    console.log(data.choiceConfirm);
+    if (data.choiceConfirm === false) {
+      return;
+    } else {
+      inquirer.prompt(empList).then(function (data1) {
+        console.log(data1);
+      });
+    }
   });
 }
 
