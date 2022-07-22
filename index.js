@@ -1,7 +1,14 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+const Employee = require("./lib/Employee");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
+const Manager = require("./lib/Manager");
+
 const empList = ["Employee", "Engineer", "Intern"];
+
+const empStore = [];
 
 const questions = [
   {
@@ -49,6 +56,12 @@ const empQuestion = [
     name: "empEmail",
     message: "What is the email of this Employee",
   },
+  {
+    type: "confirm",
+    name: "choiceConfirm",
+    message: "Would you like to add a new employee",
+    default: false,
+  },
 ];
 
 const engQuestion = [
@@ -68,6 +81,12 @@ const engQuestion = [
     name: "engGit",
     message: "What is the github for this Engineer",
   },
+  {
+    type: "confirm",
+    name: "choiceConfirm",
+    message: "Would you like to add a new employee",
+    default: false,
+  },
 ];
 
 const intQuestion = [
@@ -84,21 +103,88 @@ const intQuestion = [
     message: "What is the email of this intern",
   },
   {
-    name: "empSchool",
+    name: "intSchool",
     message: "What school did this intern attend",
+  },
+  {
+    type: "confirm",
+    name: "choiceConfirm",
+    message: "Would you like to add a new employee",
+    default: false,
   },
 ];
 
 function init() {
   inquirer.prompt(questions).then(function (data) {
-    console.log(data);
+    let { manName, manID, manEmail, manOffNum } = data;
+    let Manager;
+    Manager = new Manager(manName, manID, manEmail, manOffNum);
+    empStore.push(Manager);
+    console.log(empStore);
     console.log(data.choiceConfirm);
     if (data.choiceConfirm === false) {
       return;
     } else {
-      inquirer.prompt(empList).then(function (data1) {
-        console.log(data1);
-      });
+      return genNew(data);
+    }
+  });
+}
+
+function genNew() {
+  inquirer.prompt(empListChoice).then(function (data) {
+    console.log(data);
+    if (data.choice === "Employee") {
+      return genEmp();
+    } else if (data.choice === "Engineer") {
+      return genEng();
+    } else if (data.choice === "Intern") {
+      return genInt();
+    }
+  });
+}
+
+function genEmp() {
+  inquirer.prompt(empQuestion).then(function (data) {
+    let { empName, empID, empEmail } = data;
+    let Employee;
+    Employee = new Employee(empName, empID, empEmail);
+    empStore.push(Employee);
+    console.log(empStore);
+    console.log(data.choiceConfirm);
+    if (data.choiceConfirm === false) {
+      return;
+    } else {
+      return genNew();
+    }
+  });
+}
+
+function genEng() {
+  inquirer.prompt(engQuestion).then(function (data) {
+    let { engNAme, engID, engEmail, engGit } = data;
+    let Engineer;
+    Engineer = new Engineer(engNAme, engID, engEmail, engGit);
+    empStore.push(Engineer);
+    console.log(empStore);
+    if (data.choiceConfirm === false) {
+      return;
+    } else {
+      return genNew();
+    }
+  });
+}
+
+function genInt() {
+  inquirer.prompt(intQuestion).then(function (data) {
+    let { intName, intID, intEmail, intSchool } = data;
+    let Intern;
+    Intern = new Intern(intName, intID, intEmail, intSchool);
+    empStore.push(Intern);
+    console.log(empStore);
+    if (data.choiceConfirm === false) {
+      return;
+    } else {
+      return genNew();
     }
   });
 }
