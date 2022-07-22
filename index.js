@@ -123,8 +123,6 @@ function init() {
     let manager;
     manager = new Manager(manName, manID, manEmail, manOffNum);
     empStore.push(manager);
-    console.log(empStore);
-    console.log(data.choiceConfirm);
     if (data.choiceConfirm === false) {
       return writeFile(empStore);
     } else {
@@ -152,8 +150,6 @@ function genEmp() {
     let employee;
     employee = new Employee(empName, empID, empEmail);
     empStore.push(employee);
-    console.log(empStore);
-    console.log(data.choiceConfirm);
     if (data.choiceConfirm === false) {
       return writeFile(empStore);
     } else {
@@ -168,7 +164,6 @@ function genEng() {
     let engineer;
     engineer = new Engineer(engName, engID, engEmail, engGit);
     empStore.push(engineer);
-    console.log(empStore);
     if (data.choiceConfirm === false) {
       return writeFile(empStore);
     } else {
@@ -182,8 +177,7 @@ function genInt() {
     let { intName, intID, intEmail, intSchool } = data;
     let intern;
     intern = new Intern(intName, intID, intEmail, intSchool);
-    empStore.push(intern);
-    console.log(empStore);
+    empStore.push(intern.json);
     if (data.choiceConfirm === false) {
       return writeFile(empStore);
     } else {
@@ -193,14 +187,16 @@ function genInt() {
 }
 
 function writeFile(data) {
-  const htmlFile = HTMLGen(data);
-  fs.writeFile(fileName, htmlFile, function (err) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("Generating Profile Page");
-    }
-  });
+  let pplInfo = JSON.parse(data);
+  console.log(`THIS IS THE DATA GIVEN TO WRITEFILE ${pplInfo}`);
+  // const htmlFile = HTMLGen(data);
+  // fs.writeFile(fileName, htmlFile, function (err) {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     console.log("Generating Profile Page");
+  //   }
+  // });
 }
 
 init();
