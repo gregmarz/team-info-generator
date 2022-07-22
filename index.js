@@ -117,13 +117,13 @@ const intQuestion = [
 function init() {
   inquirer.prompt(questions).then(function (data) {
     let { manName, manID, manEmail, manOffNum } = data;
-    let Manager;
-    Manager = new Manager(manName, manID, manEmail, manOffNum);
-    empStore.push(Manager);
+    let manager;
+    manager = new Manager(manName, manID, manEmail, manOffNum);
+    empStore.push(manager);
     console.log(empStore);
     console.log(data.choiceConfirm);
     if (data.choiceConfirm === false) {
-      return;
+      return writeFile();
     } else {
       return genNew(data);
     }
@@ -146,13 +146,13 @@ function genNew() {
 function genEmp() {
   inquirer.prompt(empQuestion).then(function (data) {
     let { empName, empID, empEmail } = data;
-    let Employee;
-    Employee = new Employee(empName, empID, empEmail);
-    empStore.push(Employee);
+    let employee;
+    employee = new Employee(empName, empID, empEmail);
+    empStore.push(employee);
     console.log(empStore);
     console.log(data.choiceConfirm);
     if (data.choiceConfirm === false) {
-      return;
+      return writeFile();
     } else {
       return genNew();
     }
@@ -161,13 +161,13 @@ function genEmp() {
 
 function genEng() {
   inquirer.prompt(engQuestion).then(function (data) {
-    let { engNAme, engID, engEmail, engGit } = data;
-    let Engineer;
-    Engineer = new Engineer(engNAme, engID, engEmail, engGit);
-    empStore.push(Engineer);
+    let { engName, engID, engEmail, engGit } = data;
+    let engineer;
+    engineer = new Engineer(engName, engID, engEmail, engGit);
+    empStore.push(engineer);
     console.log(empStore);
     if (data.choiceConfirm === false) {
-      return;
+      return writeFile();
     } else {
       return genNew();
     }
@@ -177,18 +177,20 @@ function genEng() {
 function genInt() {
   inquirer.prompt(intQuestion).then(function (data) {
     let { intName, intID, intEmail, intSchool } = data;
-    let Intern;
-    Intern = new Intern(intName, intID, intEmail, intSchool);
-    empStore.push(Intern);
+    let intern;
+    intern = new Intern(intName, intID, intEmail, intSchool);
+    empStore.push(intern);
     console.log(empStore);
     if (data.choiceConfirm === false) {
-      return;
+      return writeFile();
     } else {
       return genNew();
     }
   });
 }
 
-function writeFile() {}
+function writeFile() {
+  console.log(empStore);
+}
 
 init();
