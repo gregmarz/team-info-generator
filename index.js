@@ -1,6 +1,9 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+const fileName = "./dist/index.html";
+const HTMLGen = require("./src/HTML");
+
 const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -123,7 +126,7 @@ function init() {
     console.log(empStore);
     console.log(data.choiceConfirm);
     if (data.choiceConfirm === false) {
-      return writeFile();
+      return writeFile(empStore);
     } else {
       return genNew(data);
     }
@@ -152,7 +155,7 @@ function genEmp() {
     console.log(empStore);
     console.log(data.choiceConfirm);
     if (data.choiceConfirm === false) {
-      return writeFile();
+      return writeFile(empStore);
     } else {
       return genNew();
     }
@@ -167,7 +170,7 @@ function genEng() {
     empStore.push(engineer);
     console.log(empStore);
     if (data.choiceConfirm === false) {
-      return writeFile();
+      return writeFile(empStore);
     } else {
       return genNew();
     }
@@ -182,15 +185,22 @@ function genInt() {
     empStore.push(intern);
     console.log(empStore);
     if (data.choiceConfirm === false) {
-      return writeFile();
+      return writeFile(empStore);
     } else {
       return genNew();
     }
   });
 }
 
-function writeFile() {
-  console.log(empStore);
+function writeFile(data) {
+  const htmlFile = HTMLGen(data);
+  fs.writeFile(fileName, htmlFile, function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Generating Profile Page");
+    }
+  });
 }
 
 init();
