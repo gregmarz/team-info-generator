@@ -160,7 +160,12 @@ function genEmp() {
 
 function genEng() {
   inquirer.prompt(engQuestion).then(function (data) {
-    const newEngineer = new Engineer(data.empName, data.empID, data.empEmail);
+    const newEngineer = new Engineer(
+      data.engName,
+      data.engID,
+      data.engEmail,
+      data.engGit
+    );
     empStore.push(newEngineer);
     if (data.choiceConfirm === false) {
       return writeFile(empStore);
@@ -172,7 +177,12 @@ function genEng() {
 
 function genInt() {
   inquirer.prompt(intQuestion).then(function (data) {
-    const newIntern = new Intern(data.empName, data.empID, data.empEmail);
+    const newIntern = new Intern(
+      data.intName,
+      data.intID,
+      data.intEmail,
+      data.intSchool
+    );
     empStore.push(newIntern);
     if (data.choiceConfirm === false) {
       return writeFile(empStore);
@@ -184,15 +194,56 @@ function genInt() {
 
 function writeFile(info) {
   console.log(info);
-  console.log(`THIS IS THE DATA GIVEN TO WRITEFILE ${info[0].name}`);
-  // const htmlFile = HTMLGen(data);
-  // fs.writeFile(fileName, htmlFile, function (err) {
-  //   if (err) {
-  //     console.log(err);
-  //   } else {
-  //     console.log("Generating Profile Page");
-  //   }
-  // });
+  const infoExport = `
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Team Member Page</title>
+</head>
+<body>
+    <header class="page-header text-center bg-dark p-5 mb-5">
+        <h1 class="text-white">Welcome to your Page</h1>
+    </header>
+
+    <main class="container">
+        <div class="col-12">
+            <div class="card ">
+                <h1 class="card-header text-center"><b>${}</b></h1>
+                <div class="card-body text-center">Email: ${}</div>
+                <div class="card-footer text-center">Office Number: ${}</div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card ">
+                <h1 class="card-header text-center"><b>${}</b></h1>
+                <div class="card-body text-center">Email: ${}</div>
+                <div class="card-footer text-center">Github${}</div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card ">
+                <h1 class="card-header text-center"><b>${}</b></h1>
+                <div class="card-body text-center">Email: ${}</div>
+                <div class="card-footer text-center">${}</div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card ">
+                <h1 class="card-header text-center"><b>${}</b></h1>
+                <div class="card-body text-center">Email: ${}</div>
+                <div class="card-footer text-center">${}</div>
+            </div>
+        </div>
+       
+        
+    </main>
+</body>
+</html>
+`;
 }
 
 init();

@@ -3,8 +3,8 @@ const Employee = require("../lib/Employee");
 const Engineer = require("../lib/Engineer");
 const Intern = require("../lib/Intern");
 
-function htmlDisplay(data) {
-  console.log(data);
+function htmlDisplay(info) {
+  console.log(info);
   `
     <!DOCTYPE html>
       <html lang="en">
@@ -23,7 +23,7 @@ function htmlDisplay(data) {
           <main class="container">
               <div class="col-12">
                   <div class="card ">
-                      <h1 class="card-header text-center"><b></b></h1>
+                      <h1 class="card-header text-center"><b>${info[0].name}</b></h1>
                       <div class="card-body text-center">Hello This is information about the manager</div>
                       <div class="card-footer text-center">footer info</div>
                   </div>
@@ -35,8 +35,8 @@ function htmlDisplay(data) {
       `;
 }
 
-function HTMLGen(data) {
-  console.log(htmlDisplay(data));
+function HTMLGen(info) {
+  console.log(htmlDisplay(info));
 }
 
 module.exports = HTMLGen;
