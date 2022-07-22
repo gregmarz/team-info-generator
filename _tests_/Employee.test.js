@@ -7,5 +7,6 @@ describe("Test", function () {
     expect(Johnny.name).toBe("Johnny");
     expect(Johnny.id).toBe(1094);
     expect(Johnny.email).toBe("johnny@gmail.com");
+    expect(Johnny.getRole()).toBe("Employee");
   });
 });

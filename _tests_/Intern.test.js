@@ -8,5 +8,6 @@ describe("Test", function () {
     expect(Indra.id).toBe(1100);
     expect(Indra.email).toBe("indra@gmail.com");
     expect(Indra.school).toBe("harvard");
+    expect(Indra.getRole()).toBe("Intern");
   });
 });

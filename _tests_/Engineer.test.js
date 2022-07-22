@@ -12,5 +12,6 @@ describe("Test", function () {
     expect(Eddy.id).toBe(1052);
     expect(Eddy.email).toBe("eddy@gmail.com");
     expect(Eddy.github).toBe("github.com/eddy");
+    expect(Eddy.getRole()).toBe("Engineer");
   });
 });

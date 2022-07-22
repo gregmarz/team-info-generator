@@ -8,5 +8,6 @@ describe("Test", function () {
     expect(Manny.id).toBe("0001");
     expect(Manny.email).toBe("manny@gmail.com");
     expect(Manny.officenumber).toBe(110);
+    expect(Manny.getRole()).toBe("Manager");
   });
 });
