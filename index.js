@@ -126,7 +126,6 @@ function init() {
       data.manOffNum
     );
     empStore.push(newManager);
-    console.log(empStore);
     if (data.choiceConfirm === false) {
       return writeFile(empStore);
     } else {
@@ -183,8 +182,9 @@ function genInt() {
   });
 }
 
-function writeFile(data) {
-  console.log(`THIS IS THE DATA GIVEN TO WRITEFILE ${data}`);
+function writeFile(info) {
+  console.log(info);
+  console.log(`THIS IS THE DATA GIVEN TO WRITEFILE ${info.data}`);
   // const htmlFile = HTMLGen(data);
   // fs.writeFile(fileName, htmlFile, function (err) {
   //   if (err) {
