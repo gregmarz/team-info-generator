@@ -119,10 +119,14 @@ const intQuestion = [
 
 function init() {
   inquirer.prompt(questions).then(function (data) {
-    let { manName, manID, manEmail, manOffNum } = data;
-    let manager;
-    manager = new Manager(manName, manID, manEmail, manOffNum);
-    empStore.push(manager);
+    const newManager = new Manager(
+      data.manName,
+      data.manID,
+      data.manEmail,
+      data.manOffNum
+    );
+    empStore.push(newManager);
+    console.log(empStore);
     if (data.choiceConfirm === false) {
       return writeFile(empStore);
     } else {
@@ -133,7 +137,6 @@ function init() {
 
 function genNew() {
   inquirer.prompt(empListChoice).then(function (data) {
-    console.log(data);
     if (data.choice === "Employee") {
       return genEmp();
     } else if (data.choice === "Engineer") {
@@ -146,10 +149,8 @@ function genNew() {
 
 function genEmp() {
   inquirer.prompt(empQuestion).then(function (data) {
-    let { empName, empID, empEmail } = data;
-    let employee;
-    employee = new Employee(empName, empID, empEmail);
-    empStore.push(employee);
+    const newEmployee = new Employee(data.empName, data.empID, data.empEmail);
+    empStore.push(newEmployee);
     if (data.choiceConfirm === false) {
       return writeFile(empStore);
     } else {
@@ -160,10 +161,8 @@ function genEmp() {
 
 function genEng() {
   inquirer.prompt(engQuestion).then(function (data) {
-    let { engName, engID, engEmail, engGit } = data;
-    let engineer;
-    engineer = new Engineer(engName, engID, engEmail, engGit);
-    empStore.push(engineer);
+    const newEngineer = new Engineer(data.empName, data.empID, data.empEmail);
+    empStore.push(newEngineer);
     if (data.choiceConfirm === false) {
       return writeFile(empStore);
     } else {
@@ -174,10 +173,8 @@ function genEng() {
 
 function genInt() {
   inquirer.prompt(intQuestion).then(function (data) {
-    let { intName, intID, intEmail, intSchool } = data;
-    let intern;
-    intern = new Intern(intName, intID, intEmail, intSchool);
-    empStore.push(intern.json);
+    const newIntern = new Intern(data.empName, data.empID, data.empEmail);
+    empStore.push(newIntern);
     if (data.choiceConfirm === false) {
       return writeFile(empStore);
     } else {
@@ -187,8 +184,7 @@ function genInt() {
 }
 
 function writeFile(data) {
-  let pplInfo = JSON.parse(data);
-  console.log(`THIS IS THE DATA GIVEN TO WRITEFILE ${pplInfo}`);
+  console.log(`THIS IS THE DATA GIVEN TO WRITEFILE ${data}`);
   // const htmlFile = HTMLGen(data);
   // fs.writeFile(fileName, htmlFile, function (err) {
   //   if (err) {
