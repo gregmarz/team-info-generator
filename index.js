@@ -212,30 +212,33 @@ function writeFile(info) {
     <main class="container">
         <div class="col-12">
             <div class="card ">
-                <h1 class="card-header text-center"><b>${}</b></h1>
-                <div class="card-body text-center">Email: ${}</div>
-                <div class="card-footer text-center">Office Number: ${}</div>
+                <h1 class="card-header text-center"><b>${info[0].name}</b>(Manager)</h1>
+                <div class="card-body text-center">ID: ${info[0].id}</div>
+                <div class="card-body text-center">Email: ${info[0].email}</div>
+                <div class="card-footer text-center">Office Number: ${info[0].officenumber}</div>
             </div>
         </div>
         <div class="col-12">
             <div class="card ">
-                <h1 class="card-header text-center"><b>${}</b></h1>
-                <div class="card-body text-center">Email: ${}</div>
-                <div class="card-footer text-center">Github${}</div>
+                <h1 class="card-header text-center"><b>${info[1].name}</b>(Employee)</h1>
+                <div class="card-body text-center">ID: ${info[1].id}</div>
+                <div class="card-body text-center">Email: ${info[1].email}</div>
             </div>
         </div>
         <div class="col-12">
             <div class="card ">
-                <h1 class="card-header text-center"><b>${}</b></h1>
-                <div class="card-body text-center">Email: ${}</div>
-                <div class="card-footer text-center">${}</div>
+                <h1 class="card-header text-center"><b>${info[2].name}</b>(Engineer)</h1>
+                <div class="card-body text-center">ID: ${info[2].id}</div>
+                <div class="card-body text-center">Email: ${info[2].email}</div>
+                <div class="card-footer text-center">School: ${info[2].github}</div>
             </div>
         </div>
         <div class="col-12">
             <div class="card ">
-                <h1 class="card-header text-center"><b>${}</b></h1>
-                <div class="card-body text-center">Email: ${}</div>
-                <div class="card-footer text-center">${}</div>
+                <h1 class="card-header text-center"><b>${info[3].name}</b>(Intern)</h1>
+                <div class="card-body text-center">ID: ${info[3].id}</div>
+                <div class="card-body text-center">Email: ${info[3].email}</div>
+                <div class="card-footer text-center">${info[3].school}</div>
             </div>
         </div>
        
@@ -244,6 +247,13 @@ function writeFile(info) {
 </body>
 </html>
 `;
+  fs.writeFile(fileName, infoExport, function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("generating README");
+    }
+  });
 }
 
 init();
